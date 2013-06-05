@@ -5,6 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Date:   6/5/13 / 7:58 AM
@@ -25,13 +29,18 @@ class IndexController
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @RequestMapping(method = RequestMethod.GET)
-    public String displayRequestPage()
+    public ModelAndView displayRequestPage()
     {
         /*
            I am going to display the helloworld.jsp page now :)
          */
         logger.debug("made it to controller");
-        return "helloworld";
+
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("user", "Johnathan Mark Smith");
+
+        return new ModelAndView("helloworld", model);
+
 
     }
 

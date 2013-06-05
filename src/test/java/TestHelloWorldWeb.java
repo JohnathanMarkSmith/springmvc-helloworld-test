@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -43,10 +44,18 @@ public class TestHelloWorldWeb
 
     @Test
     public void getFoo() throws Exception {
+        /*
+            This following code will do 'GET' to the web apps
+            and check that the return view is "helloworld"
+            and also that it has a attribute "user" to "Johnathan Mark Smith"
+
+         */
         this.mockMvc.perform(get("/ask")
                 .accept(MediaType.TEXT_HTML))
                 .andExpect(status().isOk())
-                .andExpect(view().name("helloworld"));
+                .andExpect(view().name("helloworld"))
+                .andExpect(MockMvcResultMatchers.model().attribute("user", "Johnathan Mark Smith"))
+                ;
 
 
     }
