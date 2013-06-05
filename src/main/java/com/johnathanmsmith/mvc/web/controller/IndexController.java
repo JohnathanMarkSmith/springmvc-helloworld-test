@@ -31,10 +31,15 @@ class IndexController
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView displayRequestPage()
     {
-        /*
-           I am going to display the helloworld.jsp page now :)
-         */
         logger.debug("made it to controller");
+
+        /*
+
+            Going to put my name in the model so it can be displayed on the page,
+            this is also going to be used in the test to see if my name did make it
+            to the page
+
+        */
 
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("user", "Johnathan Mark Smith");
