@@ -19,12 +19,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Date:   6/5/13 / 9:05 AM
  * Author: Johnathan Mark Smith
- * Email:  johnathansmith1969@gmail.com
+ * Email:  john@johnathanmarksmith.com
  * <p/>
  * Comments:
- *
- *    This class is going to be use for testing my Spring MVC Hello World Web App.
- *
+ * <p/>
+ * This class is going to be use for testing my Spring MVC Hello World Web App.
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -38,12 +37,14 @@ public class TestHelloWorldWeb
     private MockMvc mockMvc;
 
     @Before
-    public void setup() {
+    public void setup()
+    {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
     @Test
-    public void getFoo() throws Exception {
+    public void getFoo() throws Exception
+    {
         /*
             This following code will do 'GET' to the web apps
             and check that the return view is "helloworld"
@@ -55,7 +56,7 @@ public class TestHelloWorldWeb
                 .andExpect(status().isOk())
                 .andExpect(view().name("helloworld"))
                 .andExpect(MockMvcResultMatchers.model().attribute("user", "Johnathan Mark Smith"))
-                ;
+        ;
 
 
     }
