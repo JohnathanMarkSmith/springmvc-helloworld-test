@@ -112,6 +112,48 @@ Now lets setup a basic controller to display a page and my name on the page:
     }
 
 
+## Testing Your Web App
+
+Below you will see the example Spring Test Framework Test that I used to test my new web app.
+
+
+    @RunWith(SpringJUnit4ClassRunner.class)
+    @ContextConfiguration(classes = {WebMVCConfig.class})
+    @WebAppConfiguration
+    public class TestHelloWorldWeb
+    {
+        @Autowired
+        private WebApplicationContext wac;
+
+        private MockMvc mockMvc;
+
+        @Before
+        public void setup()
+        {
+            this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+        }
+
+        @Test
+        public void getFoo() throws Exception
+        {
+            /*
+                This following code will do 'GET' to the web apps
+                and check that the return view is "helloworld"
+                and also that it has a attribute "user" to "Johnathan Mark Smith"
+
+             */
+            this.mockMvc.perform(get("/ask")
+                    .accept(MediaType.TEXT_HTML))
+                    .andExpect(status().isOk())
+                    .andExpect(view().name("helloworld"))
+                    .andExpect(MockMvcResultMatchers.model().attribute("user", "Johnathan Mark Smith"))
+            ;
+
+
+        }
+    }
+
+
 Thats all it takes..
 
 ## Getting The Project and Running It
